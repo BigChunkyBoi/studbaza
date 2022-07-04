@@ -1,0 +1,7 @@
+So, those files in repo are copy-pasted from my colab noteboks. There is some work to do, cuz right now they're lack of data.
+1. Change files/input
+2. Modyfi file/input
+3. It should work 
+For example, most programs depends on files inside my google drive, so won't work raw.
+There's plenty more algorithms implemented, but no commited yet to this repo.
+My plan is to put them all here and add some omega-delta-gamma-ultra-alpha data generator for them to work.
