@@ -34,29 +34,29 @@ def pcy(data, k, support):
   hashmap2 = {}
   pairs = []
   c2 = {}
-  for row in data: # first 'loop'                                      
-    for entry in row: #Count every item                               
+  for row in data: # first 'loop'
+    for entry in row: #Count every item
       if entry not in supposed.keys():
         supposed[entry] = 0
       supposed[entry] += 1
     pairs = list(combinations(row,2)) #pairs
-    for p in pairs: #hash 
+    for p in pairs: #hash
       h = hash(p)
       if h not in hashmap.keys():
         hashmap[h] = 0
       hashmap[h] += 1
-  for h in hashmap: #bitmap for firsh hashmap                                             
+  for h in hashmap: #bitmap for firsh hashmap
     if hashmap[h] > support: #treshhold
       hashmap[h] = True
     else:
       hashmap[h] = False
   #print(hashmap)
-  frequentitems = [[] for _ in range(k)] #list for our frequent items sets 
+  frequentitems = [[] for _ in range(k)] #list for our frequent items sets
   #it goes like this
   #frequentitems[0] <- every item above our support
-  #frequentitems[1] <- every pair above our support 
+  #frequentitems[1] <- every pair above our support
   #frequentitems[2] <- every triple above our support
-  #basicaly, it's L                               
+  #basicaly, it's L
   for entry in supposed.keys():
     if supposed[entry] >= support:
       frequentitems[0].append(set([entry]))
@@ -64,19 +64,19 @@ def pcy(data, k, support):
     pairs = list(combinations(row,2))
     for p in pairs:
       h = hash(p)
-      #so if every item from pair is in frequentitems[0] AND 
+      #so if every item from pair is in frequentitems[0] AND
       #value under hashmap['hash from that pair'] is above support,
       #we're doing another hashmap
-      if {p[0]} in frequentitems[0] and {p[1]} in frequentitems[0]: 
+      if {p[0]} in frequentitems[0] and {p[1]} in frequentitems[0]:
         if hashmap[h] == True:
           h2 = hash2(p)
-          if h2 not in hashmap2.keys():                                     
+          if h2 not in hashmap2.keys():
             hashmap2[h2] = 0
           hashmap2[h2]+=1
   #and another bitmap
   for h in hashmap2:
     if hashmap2[h] > support:
-      hashmap2[h] = True                                                    
+      hashmap2[h] = True
     else:
       hashmap2[h] = False
   #print(hashmap2)
@@ -87,11 +87,11 @@ def pcy(data, k, support):
       h2 = hash2(p)
       #If pair in frequentitems[0] and
       #hashmap['hash1 from pair'] == 1 AND
-      #hashmap2['hash2 from pair'] == 1 
-      if {p[0]} in frequentitems[0] and {p[1]} in frequentitems[0]:         
-        if hashmap[h] == True:                                                
-          if hashmap2[h2] == True: #Count pair                                            
-            if p not in c2.keys(): 
+      #hashmap2['hash2 from pair'] == 1
+      if {p[0]} in frequentitems[0] and {p[1]} in frequentitems[0]:
+        if hashmap[h] == True:
+          if hashmap2[h2] == True: #Count pair
+            if p not in c2.keys():
               c2[p]=0
             c2[p] += 1
   print(c2)
@@ -99,7 +99,7 @@ def pcy(data, k, support):
   for c in c2:
     if c2[c] > support:
       frequentitems[1].append(c)
-  print(frequentitems[1]) #replace that print with return or do your apriori below 
+  print(frequentitems[1]) #replace that print with return or do your apriori below
 #C2 -> L2
 #bitarray
 
